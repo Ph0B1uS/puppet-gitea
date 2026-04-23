@@ -65,7 +65,7 @@ class gitea::runner (
     command => "${path}/act_runner register --no-interactive --instance ${gitea_url} --token ${token} --config ${path}/act-runner-config.yaml",
     onlyif  => "/usr/bin/test ! -e ${path}/.runner",
     cwd     => $path,
-    owner   => $owner,
+    user    => $owner,
     group   => $group,
   }
 
