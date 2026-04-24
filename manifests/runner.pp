@@ -42,7 +42,6 @@ class gitea::runner (
   $runner_configuration = {
     'path'    => "${path}/act-runner-config.yaml",
     'require' => File[$path],
-    'notify'  => Service['gitea-runner'],
   }
 
   file { "${path}/act_runner":
@@ -59,6 +58,7 @@ class gitea::runner (
     group   => $group,
     mode    => '0600',
     content => to_yaml($configuration),
+    notify  => Service['gitea-runner'],
   }
 
   exec { 'register_runner':
